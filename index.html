@@ -5,66 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Embedded & Control Engineering</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --cobalt-blue: #0047AB;
-            --light-bg: #f8fafd;
-            --text-dark: #1a1a1a;
+            --bg-dark: #111111; /* 스크린샷 느낌의 다크 배경 */
+            --card-bg: #1a1a1a;
+            --input-bg: #2a2a2a;
+            --text-light: #ffffff;
             --sidebar-width: 260px;
         }
-        body { font-family: 'Pretendard', sans-serif; margin: 0; display: flex; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.6; }
-        nav { width: var(--sidebar-width); height: 100vh; background-color: var(--cobalt-blue); color: #ffffff; position: fixed; padding: 50px 30px; box-sizing: border-box; display: flex; flex-direction: column; }
-        nav h1 { font-size: 1.5rem; margin-bottom: 50px; font-weight: 800; letter-spacing: 1px; }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; display: flex; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+        
+        /* Sidebar Navigation */
+        nav { width: var(--sidebar-width); height: 100vh; background-color: #000000; color: #ffffff; position: fixed; padding: 50px 30px; box-sizing: border-box; display: flex; flex-direction: column; border-right: 1px solid #222; }
+        nav h1 { font-size: 1.2rem; margin-bottom: 50px; font-weight: 800; letter-spacing: 2px; color: var(--cobalt-blue); }
         .nav-links { display: flex; flex-direction: column; gap: 25px; }
-        nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: #ffffff; padding-left: 5px; }
+        nav a { color: #888; text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
+        nav a:hover { color: var(--text-light); }
+        
         main { margin-left: var(--sidebar-width); padding: 80px 60px; width: 100%; max-width: 1000px; }
-        .hero h2 { font-size: 3.5rem; color: var(--cobalt-blue); margin: 0; font-weight: 900; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; color: #555; margin-top: 10px; font-weight: 500; }
-        .section-title { font-size: 1.8rem; font-weight: 700; margin-top: 80px; margin-bottom: 30px; border-left: 5px solid var(--cobalt-blue); padding-left: 15px; }
+        
+        /* Hero Section */
+        .hero h2 { font-size: 3.5rem; color: var(--text-light); margin: 0; font-weight: 900; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; color: #888; margin-top: 15px; }
+        
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-top: 100px; margin-bottom: 40px; color: var(--text-light); }
+        .title-accent { color: var(--cobalt-blue); }
+
+        /* About Section */
         .about-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .skill-card { background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--cobalt-blue); }
-        .skill-card ul { list-style: none; padding: 0; font-size: 0.95rem; line-height: 2; }
+        .skill-card { background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid #222; }
+        .skill-card ul { list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: #aaa; }
+        .skill-card li { margin-bottom: 10px; }
+
+        /* Project Grid */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .card h4 { color: var(--cobalt-blue); margin: 10px 0; font-size: 1.2rem; }
-        .btn-detail { background: var(--cobalt-blue); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { border-color: var(--cobalt-blue); transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; opacity: 0.8; }
+        .card h4 { margin: 10px 0; font-size: 1.2rem; color: var(--text-light); }
+        .card p { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+
+        /* Buttons */
+        .btn-detail { background: var(--cobalt-blue); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .btn-detail:hover { background: #003580; }
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
-        .modal-content { background: white; width: 90%; max-width: 750px; max-height: 85vh; border-radius: 16px; padding: 40px; overflow-y: auto; position: relative; }
-        .close { position: absolute; right: 25px; top: 20px; font-size: 2rem; cursor: pointer; color: #aaa; }
-        .modal-header { border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
-        .detail-item { margin-bottom: 25px; }
-        .detail-label { font-weight: 700; color: var(--cobalt-blue); display: block; margin-bottom: 8px; font-size: 1.1rem; }
-        .tech-tag { background: #f0f4f8; color: #446688; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; margin-right: 6px; font-weight: 600; }
-        @media (max-width: 768px) { body { flex-direction: column; } nav { width: 100%; height: auto; position: relative; padding: 30px; } main { margin-left: 0; padding: 40px 20px; } }
+
+        /* Contact Section (스크린샷 스타일 반영) */
+        .contact-container { max-width: 600px; margin: 0 auto; text-align: center; }
+        .contact-form { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 30px; }
+        .contact-input { 
+            background: var(--input-bg); border: 1px solid #333; color: white; 
+            padding: 15px; border-radius: 8px; font-size: 0.9rem; outline: none; transition: 0.3s;
+        }
+        .contact-input:focus { border-color: var(--cobalt-blue); }
+        .contact-textarea { min-height: 150px; resize: vertical; }
+        .btn-send { 
+            background: #333; color: white; border: none; padding: 15px; 
+            border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-send:hover { background: var(--cobalt-blue); }
+
+        .contact-links { display: flex; justify-content: center; gap: 30px; margin-top: 40px; }
+        .contact-link-item { color: white; text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .contact-link-item:hover { color: var(--cobalt-blue); }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .modal-content { background: #1a1a1a; color: white; width: 90%; max-width: 700px; border-radius: 16px; padding: 40px; position: relative; border: 1px solid #333; }
+        .close { position: absolute; right: 25px; top: 20px; font-size: 2rem; cursor: pointer; color: #555; }
+        .tech-tag { background: #222; color: var(--cobalt-blue); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px; font-weight: 600; border: 1px solid var(--cobalt-blue); }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; padding: 30px; border-bottom: 1px solid #222; }
+            main { margin-left: 0; padding: 40px 20px; }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <h1>ENGINEERING</h1>
+        <h1>S.J. HAN</h1>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
+    
     <main>
         <section class="hero">
-            <h2>Hello World!</h2>
+            <h2>Hello<span class="title-accent"> World!</span></h2>
             <p>Embedded Systems & Control Engineering Specialist</p>
         </section>
+
         <section id="about">
             <h3 class="section-title">About Me</h3>
             <div class="about-container">
                 <div>
-                    <p><strong>제어공학 기반의 임베디드 시스템 엔지니어</strong>를 목표로 하고 있습니다. 시스템 모델링과 하드웨어 구현 사이의 간극을 줄이는 연구를 지향합니다.</p>
-                    <p><strong>Laplace Transform 기반 모델링</strong>과 <strong>PID 제어 알고리즘</strong>을 통해 시스템 안정성을 확보하는 것에 집중합니다.</p>
+                    <p>제어공학 기반의 임베디드 시스템 엔지니어를 목표로 합니다. 시스템 모델링과 하드웨어 구현 사이의 간극을 줄이는 연구를 지향합니다.</p>
+                    <p>특히 <strong>Laplace Transform 기반 모델링</strong>과 <strong>PID 제어 알고리즘</strong>을 통해 시스템 안정성을 확보하는 데 강점이 있습니다.</p>
                 </div>
                 <div class="skill-card">
-                    <h4 style="color: var(--cobalt-blue); margin-top:0;">Technical Skills</h4>
+                    <h4 style="color: var(--cobalt-blue); margin-bottom:15px;">Technical Skills</h4>
                     <ul>
                         <li>• Control: PID, Feedback Loop, Laplace Modeling</li>
                         <li>• Circuit: KiCad, Power Path, Buck Converter</li>
@@ -73,29 +116,44 @@
                 </div>
             </div>
         </section>
+
         <section id="projects">
             <h3 class="section-title">Projects</h3>
             <div class="project-grid">
                 <div class="card">
                     <img src="my_fortplio.webp" alt="Assistive Tech">
                     <h4>Assistive Technology</h4>
-                    <p>Obstacle detection system using sensor fusion.</p>
-                    <button class="btn-detail" onclick="openModal('project1')">상세보기</button>
+                    <p>ToF와 초음파 센서를 결합한 장애물 감지 시스템</p>
+                    <button class="btn-detail" onclick="openModal('project1')">View Details</button>
                 </div>
                 <div class="card">
-                    <div style="width:100%; height:200px; background:#e9ecef; border-radius:8px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; color:#adb5bd;">Coming Soon</div>
+                    <div style="width:100%; height:200px; background:#111; border-radius:8px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; color:#444; border:1px solid #222;">Coming Soon</div>
                     <h4>Safety Control System</h4>
-                    <p>Automated braking system for wheelchairs.</p>
-                    <button class="btn-detail" onclick="openModal('project2')">상세보기</button>
+                    <p>휠체어 밀림 방지 및 자동 감속 제어 시스템</p>
+                    <button class="btn-detail" onclick="openModal('project2')">View Details</button>
                 </div>
             </div>
         </section>
-        <section id="contact" style="margin-bottom: 100px;">
-            <h3 class="section-title">Contact</h3>
-            <p>협업 문의는 언제든 환영합니다.</p>
-            <div style="margin-top: 25px;">
-                <a href="mailto:your-email@gmail.com" class="btn-detail">✉️ Email Me</a>
-                <a href="https://github.com/digitliter92" target="_blank" class="btn-detail" style="background:#24292e;">🐙 GitHub</a>
+
+        <section id="contact" style="padding-bottom: 100px;">
+            <div class="contact-container">
+                <h3 class="section-title" style="margin-top: 0;">Contact <span class="title-accent">Me</span></h3>
+                
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" class="contact-input">
+                    <input type="email" placeholder="Your Email" class="contact-input">
+                    <textarea placeholder="Your Message" class="contact-input contact-textarea"></textarea>
+                    <button type="submit" class="btn-send">Send</button>
+                </form>
+
+                <div class="contact-links">
+                    <a href="https://github.com/digitliter92" target="_blank" class="contact-link-item">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:your-email@gmail.com" class="contact-link-item">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
             </div>
         </section>
     </main>
@@ -111,29 +169,31 @@
         const projectData = {
             project1: {
                 title: "Assistive Technology Project",
-                overview: "ToF와 초음파 센서를 결합한 장애물 감지 시스템입니다.",
+                overview: "시각장애인을 위한 센서 퓨전 기반 장애물 감지 장치.",
                 hardware: ["ESP32", "ToF Sensor", "Ultrasonic"],
-                logic: "Median Filter를 활용한 노이즈 제거 알고리즘.",
-                result: "감지율 98% 달성."
+                logic: "Median Filter를 통한 노이즈 제거 및 실시간 위험 판단 알고리즘.",
+                result: "감지율 98% 달성 및 햅틱 피드백 구현."
             },
             project2: {
                 title: "Safety Control System",
-                overview: "휠체어 밀림 방지 및 자동 감속 시스템입니다.",
+                overview: "휠체어 안전을 위한 경사로 밀림 방지 시스템.",
                 hardware: ["Arduino", "MPU6050", "Encoder Motor"],
-                logic: "PID 제어 및 Laplace Transform 모델링.",
-                result: "15도 경사로 밀림 방지 검증 완료."
+                logic: "PID 제어 및 Laplace Transform 기반 안정성 모델링.",
+                result: "15도 경사로 정지 유지 및 정속 주행 검증."
             }
         };
+
         function openModal(id) {
             const data = projectData[id];
             const modal = document.getElementById('projectModal');
             const body = document.getElementById('modalBody');
             body.innerHTML = `
-                <div class="modal-header"><h3>${data.title}</h3></div>
-                <div class="detail-item"><span class="detail-label">Overview</span><p>${data.overview}</p></div>
-                <div class="detail-item"><span class="detail-label">Hardware Stack</span><div>${data.hardware.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div></div>
-                <div class="detail-item"><span class="detail-label">Core Logic</span><p>${data.logic}</p></div>
-                <div class="detail-item"><span class="detail-label">Final Result</span><p>${data.result}</p></div>`;
+                <h2 style="color:var(--cobalt-blue); margin-top:0;">${data.title}</h2>
+                <div style="margin:20px 0;"><span style="color:#888; display:block; margin-bottom:5px;">Overview</span><p>${data.overview}</p></div>
+                <div style="margin:20px 0;"><span style="color:#888; display:block; margin-bottom:5px;">Hardware</span><div>${data.hardware.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div></div>
+                <div style="margin:20px 0;"><span style="color:#888; display:block; margin-bottom:5px;">Core Logic</span><p>${data.logic}</p></div>
+                <div style="margin:20px 0;"><span style="color:#888; display:block; margin-bottom:5px;">Result</span><p>${data.result}</p></div>
+            `;
             modal.style.display = 'flex';
         }
         function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
