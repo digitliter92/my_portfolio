@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Hello World!</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --cobalt-blue: #0047AB;
+            --light-bg: #f8fafd;
+            --text-dark: #1a1a1a;
+            --sidebar-width: 260px;
+        }
+        body {
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        nav {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--cobalt-blue);
+            color: #ffffff;
+            position: fixed;
+            padding: 50px 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        nav h1 { font-size: 1.5rem; margin-bottom: 50px; font-weight: 800; }
+        .nav-links { display: flex; flex-direction: column; gap: 25px; }
+        nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-weight: 500; }
+        nav a:hover { color: #ffffff; }
+        main { margin-left: var(--sidebar-width); padding: 80px 60px; width: 100%; max-width: 900px; }
+        .hero h2 { font-size: 4rem; color: var(--cobalt-blue); margin: 0; font-weight: 900; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-top: 60px; margin-bottom: 30px; border-left: 5px solid var(--cobalt-blue); padding-left: 15px; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .card h4 { color: var(--cobalt-blue); margin-top: 0; }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; padding: 30px; }
+            main { margin-left: 0; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>PORTFOLIO</h1>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <main>
+        <section class="hero">
+            <h2>Hello World!</h2>
+            <p>Embedded Systems & Control Engineering Specialist</p>
+        </section>
+        <section id="about">
+            <h3 class="section-title">About Me</h3>
+            <p>Engineering student focusing on power systems and sensor fusion. Developing practical solutions through schematic design and MCU programming.</p>
+            <p><strong>Skills:</strong> C++, Arduino, ESP32, PID Control, Circuit Design (KiCad)</p>
+        </section>
+        <section id="projects">
+            <h3 class="section-title">Projects</h3>
+            <div class="project-grid">
+                <div class="card">
+                    <h4>Assistive Tech</h4>
+                    <p>Obstacle detection system using sensor fusion.</p>
+                </div>
+                <div class="card">
+                    <h4>Safety Control</h4>
+                    <p>Automated braking system for manual wheelchairs.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
