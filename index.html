@@ -14,147 +14,188 @@
             --bg-light: #f8f9fa;
             --text-main: #1a1a1a;
             --text-sub: #666666;
-            --sidebar-width: 260px;
+            --sidebar-width: 280px;
         }
+
+        /* 스크롤바 디자인 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-blue); border-radius: 10px; }
         
-        body { font-family: 'Pretendard', sans-serif; margin: 0; display: flex; background-color: var(--bg-white); color: var(--text-main); line-height: 1.6; }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; display: flex; background-color: var(--bg-white); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
         
         /* Sidebar Navigation */
-        nav { width: var(--sidebar-width); height: 100vh; background-color: var(--bg-light); color: var(--text-main); position: fixed; padding: 50px 30px; box-sizing: border-box; display: flex; flex-direction: column; border-right: 1px solid #eee; }
-        nav h1 { font-size: 1.2rem; margin-bottom: 50px; font-weight: 800; letter-spacing: 2px; color: var(--primary-blue); }
-        .nav-links { display: flex; flex-direction: column; gap: 25px; }
-        nav a { color: var(--text-sub); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
-        nav a:hover { color: var(--primary-blue); padding-left: 5px; }
-        
-        main { margin-left: var(--sidebar-width); padding: 80px 60px; width: 100%; max-width: 1000px; }
+        nav { 
+            width: var(--sidebar-width); height: 100vh; background-color: var(--bg-light); 
+            position: fixed; padding: 60px 40px; box-sizing: border-box; 
+            display: flex; flex-direction: column; border-right: 1px solid #eee; 
+            transition: all 0.3s;
+        }
+        nav h1 { font-size: 1.4rem; margin-bottom: 60px; font-weight: 800; letter-spacing: 1px; color: var(--primary-blue); border-left: 4px solid var(--point-orange); padding-left: 15px; }
+        .nav-links { display: flex; flex-direction: column; gap: 20px; }
+        nav a { 
+            color: var(--text-sub); text-decoration: none; font-weight: 600; 
+            transition: 0.3s; font-size: 1rem; display: flex; align-items: center; gap: 10px;
+        }
+        nav a i { font-size: 0.9rem; opacity: 0.5; }
+        nav a:hover { color: var(--primary-blue); transform: translateX(8px); }
+        nav a.active { color: var(--primary-blue); }
+
+        main { margin-left: var(--sidebar-width); padding: 100px 80px; width: calc(100% - var(--sidebar-width)); box-sizing: border-box; }
         
         /* Hero Section */
-        .hero h2 { font-size: 3.5rem; color: var(--text-main); margin: 0; font-weight: 900; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; color: var(--text-sub); margin-top: 15px; font-weight: 500; }
+        .hero { margin-bottom: 120px; animation: fadeInUp 1s ease; }
+        .hero h2 { font-size: 4.5rem; color: var(--text-main); margin: 0; font-weight: 900; line-height: 1.1; letter-spacing: -2px; }
+        .hero p { font-size: 1.4rem; color: var(--text-sub); margin-top: 25px; font-weight: 400; max-width: 700px; }
         .accent-blue { color: var(--primary-blue); }
+        .accent-orange { color: var(--point-orange); }
 
-        .section-title { font-size: 1.8rem; font-weight: 700; margin-top: 100px; margin-bottom: 40px; text-align: center; }
-        .title-line { display: inline-block; position: relative; padding-bottom: 10px; }
-        .title-line::after { content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 50px; height: 4px; background: var(--point-orange); border-radius: 2px; }
+        /* Sections */
+        .section-title { font-size: 2rem; font-weight: 800; margin-top: 120px; margin-bottom: 50px; display: flex; align-items: center; gap: 15px; }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: #eee; }
 
-        /* Experience Section (타임라인 카드) */
-        .experience-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        /* Experience Section */
+        .experience-container { display: grid; gap: 25px; }
         .exp-card { 
-            background: var(--bg-white); width: 100%; max-width: 700px; padding: 25px; 
-            border-radius: 16px; border: 1px solid #eee; text-align: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: 0.3s;
+            background: var(--bg-light); padding: 30px; 
+            border-radius: 20px; border: 1px solid transparent; 
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .exp-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); box-shadow: 0 10px 20px rgba(63, 65, 207, 0.1); }
-        .exp-date { color: var(--point-orange); font-weight: 700; font-size: 1rem; display: block; margin-bottom: 8px; }
-        .exp-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
+        .exp-card:hover { border-color: var(--primary-blue); background: #fff; transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .exp-info h4 { margin: 5px 0; font-size: 1.2rem; }
+        .exp-date { color: var(--point-orange); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
 
-        /* Project Card */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: var(--bg-light); padding: 20px; border-radius: 16px; border: 1px solid #efefef; transition: 0.3s; }
-        .card:hover { border-color: var(--point-orange); background: var(--bg-white); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
-        .card h4 { margin: 10px 0; font-size: 1.2rem; color: var(--primary-blue); }
+        /* Project Cards */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .card { 
+            background: var(--bg-white); border-radius: 24px; border: 1px solid #eee; 
+            overflow: hidden; transition: 0.4s; position: relative;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); border-color: var(--primary-blue); }
+        .card-img { width: 100%; height: 240px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .card-img img { transform: scale(1.1); }
+        .card-content { padding: 30px; }
+        .card h4 { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--text-main); }
+        .card p { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 25px; }
 
         /* Buttons */
-        .btn-detail { background: var(--primary-blue); color: white; border: none; padding: 10px 22px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .btn-detail:hover { background: #2a2ca8; box-shadow: 0 4px 12px rgba(63, 65, 207, 0.3); }
+        .btn-detail { 
+            background: var(--text-main); color: white; border: none; padding: 12px 25px; 
+            border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; 
+            display: flex; align-items: center; gap: 8px;
+        }
+        .btn-detail:hover { background: var(--primary-blue); }
 
         /* Contact Section */
-        .contact-container { max-width: 600px; margin: 0 auto; text-align: center; }
-        .contact-form { display: grid; gap: 12px; margin-top: 30px; }
-        .contact-input { 
-            background: var(--bg-light); border: 1px solid #ddd; color: var(--text-main); 
-            padding: 15px; border-radius: 10px; font-size: 0.9rem; outline: none; transition: 0.3s;
+        .contact-box { 
+            background: var(--primary-blue); padding: 60px; border-radius: 30px; color: white;
+            text-align: center; margin-top: 50px;
         }
-        .contact-input:focus { border-color: var(--primary-blue); background: var(--bg-white); }
-        .btn-send { 
-            background: var(--text-main); color: white; border: none; padding: 15px; 
-            border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s;
+        .contact-box h3 { font-size: 2.5rem; margin-bottom: 20px; }
+        .btn-mail { 
+            display: inline-block; background: var(--point-orange); color: white; 
+            padding: 15px 40px; border-radius: 50px; text-decoration: none; 
+            font-weight: 700; margin-top: 20px; transition: 0.3s;
         }
-        .btn-send:hover { background: var(--point-orange); }
+        .btn-mail:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; backdrop-filter: blur(4px); }
-        .modal-content { background: white; color: var(--text-main); width: 90%; max-width: 650px; border-radius: 20px; padding: 40px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .close { position: absolute; right: 25px; top: 20px; font-size: 1.8rem; cursor: pointer; color: #ccc; }
-        .tech-tag { background: #f0f1ff; color: var(--primary-blue); padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; margin-right: 8px; font-weight: 600; }
+        /* Modal 고도화 */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal-content { 
+            background: white; width: 90%; max-width: 800px; border-radius: 30px; 
+            padding: 50px; position: relative; animation: modalSlide 0.5s ease;
+        }
+        @keyframes modalSlide { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .close { position: absolute; right: 30px; top: 30px; font-size: 2rem; cursor: pointer; color: #ddd; transition: 0.3s; }
+        .close:hover { color: var(--point-orange); }
+        .tech-tag { background: #f0f1ff; color: var(--primary-blue); padding: 6px 15px; border-radius: 8px; font-size: 0.85rem; margin-right: 10px; font-weight: 700; }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            nav { width: 100%; height: auto; position: relative; padding: 30px; border-right: none; border-bottom: 1px solid #eee; }
-            main { margin-left: 0; padding: 40px 20px; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 1024px) {
+            nav { width: 80px; padding: 40px 20px; }
+            nav h1, nav span { display: none; }
+            main { margin-left: 80px; padding: 60px 40px; }
+            .hero h2 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <h1>PORTFOLIO</h1>
+        <h1>ENGINEER</h1>
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" class="active"><i class="fas fa-user"></i> <span>About</span></a>
+            <a href="#experience"><i class="fas fa-briefcase"></i> <span>Experience</span></a>
+            <a href="#projects"><i class="fas fa-code"></i> <span>Projects</span></a>
+            <a href="#contact"><i class="fas fa-paper-plane"></i> <span>Contact</span></a>
         </div>
     </nav>
     
     <main>
         <section id="about" class="hero">
-            <h2>Hello <span class="accent-blue">World!</span></h2>
-            <p>Embedded Systems & Control Engineering Specialist</p>
-            <div style="margin-top: 40px; max-width: 600px;">
-                <p>시스템 모델링과 하드웨어 구현 사이의 정밀한 제어를 연구합니다. <br><strong>PID 제어</strong>와 <strong>Laplace 모델링</strong>을 활용해 안정적인 시스템을 설계합니다.</p>
-            </div>
+            <h2>Building <span class="accent-blue">Future</span><br>with <span class="accent-orange">Precision.</span></h2>
+            <p>안녕하세요! 하드웨어의 정밀한 제어와 시스템 모델링에 열정을 가진 <b>임베디드 제어 엔지니어</b>입니다. 복잡한 문제를 수학적 모델로 풀어내고, 실제 하드웨어로 구현하는 과정을 즐깁니다.</p>
         </section>
 
         <section id="experience">
-            <h3 class="section-title"><span class="title-line">Experience</span></h3>
+            <h3 class="section-title">Experience</h3>
             <div class="experience-container">
                 <div class="exp-card">
-                    <span class="exp-date">2026 - Present</span>
-                    <div class="exp-title">Engineering Student | Electrical & Electronics Focus</div>
+                    <div class="exp-info">
+                        <span class="exp-date">2026 - Present</span>
+                        <h4>Electrical & Electronics Engineering</h4>
+                        <p style="color:var(--text-sub); margin:0;">Focused on Control Systems & Robotics</p>
+                    </div>
+                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: #eee;"></i>
                 </div>
                 <div class="exp-card">
-                    <span class="exp-date">2025 - 2026</span>
-                    <div class="exp-title">Hardware Lead | Assistive Tech Device Project</div>
-                </div>
-                <div class="exp-card">
-                    <span class="exp-date">2024 - 2025</span>
-                    <div class="exp-title">Control Logic Designer | Safety Braking System</div>
+                    <div class="exp-info">
+                        <span class="exp-date">2025 - 2026</span>
+                        <h4>Hardware Development Lead</h4>
+                        <p style="color:var(--text-sub); margin:0;">Assistive Tech "Eye-Vision" Project</p>
+                    </div>
+                    <i class="fas fa-microchip" style="font-size: 2rem; color: #eee;"></i>
                 </div>
             </div>
         </section>
 
         <section id="projects">
-            <h3 class="section-title"><span class="title-line">Projects</span></h3>
+            <h3 class="section-title">Selected Projects</h3>
             <div class="project-grid">
                 <div class="card">
-                    <img src="my_fortplio.webp" alt="Assistive Tech">
-                    <h4>Assistive Technology</h4>
-                    <p>ToF & 초음파 센서 퓨전 장애물 감지 시스템</p>
-                    <button class="btn-detail" onclick="openModal('project1')">View Details</button>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Eye Vision">
+                    </div>
+                    <div class="card-content">
+                        <h4>Eye-Vision System</h4>
+                        <p>ToF 및 초음파 센서 데이터 퓨전을 통한 시각장애인용 실시간 장애물 회피 시스템입니다.</p>
+                        <button class="btn-detail" onclick="openModal('project1')">
+                            Case Study <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="card">
-                    <div style="width:100%; height:200px; background:#f0f0f0; border-radius:10px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; color:#bbb; font-weight:600;">Coming Soon</div>
-                    <h4>Safety Control System</h4>
-                    <p>자동 감속 및 밀림 방지 제어 로직 구현</p>
-                    <button class="btn-detail" onclick="openModal('project2')">View Details</button>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Safety Control">
+                    </div>
+                    <div class="card-content">
+                        <h4>Stability Control Logic</h4>
+                        <p>MPU6050 센서와 PID 제어를 활용한 휠체어 전용 경사로 자동 브레이킹 시스템입니다.</p>
+                        <button class="btn-detail" onclick="openModal('project2')">
+                            Case Study <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" style="padding-bottom: 100px;">
-            <div class="contact-container">
-                <h3 class="section-title"><span class="title-line">Contact</span></h3>
-                <form class="contact-form">
-                    <input type="text" placeholder="Name" class="contact-input">
-                    <input type="email" placeholder="Email" class="contact-input">
-                    <textarea placeholder="Message" class="contact-input" style="min-height: 120px;"></textarea>
-                    <button type="submit" class="btn-send">Send Message</button>
-                </form>
-                <div style="display: flex; justify-content: center; gap: 25px; margin-top: 35px;">
-                    <a href="https://github.com/digitliter92" target="_blank" style="color: var(--text-main); font-size: 1.2rem;"><i class="fab fa-github"></i></a>
-                    <a href="mailto:your-email@gmail.com" style="color: var(--text-main); font-size: 1.2rem;"><i class="fas fa-envelope"></i></a>
-                </div>
+        <section id="contact">
+            <div class="contact-box">
+                <h3>Let's Collaborate.</h3>
+                <p>새로운 기술적 도전과 협업은 언제나 환영입니다.</p>
+                <a href="mailto:your-email@example.com" class="btn-mail">Send a Message</a>
             </div>
         </section>
     </main>
@@ -169,32 +210,38 @@
     <script>
         const projectData = {
             project1: {
-                title: "Assistive Technology Project",
-                overview: "시각장애인을 위한 센서 퓨전 기반 장애물 감지 장치.",
-                hardware: ["ESP32", "ToF Sensor", "Ultrasonic"],
-                logic: "Median Filter 노이즈 제거 및 실시간 위험 판단.",
-                result: "감지율 98% 달성 및 햅틱 피드백 구현."
+                title: "Eye-Vision: Assistive Tech",
+                tags: ["ESP32", "ToF Sensor", "C++", "Circuit Design"],
+                overview: "다중 센서를 활용해 주변 환경을 3D로 스캔하고 햅틱 피드백을 제공합니다.",
+                core: "Median Filter를 통한 노이즈 제거 및 데이터 정규화 로직 설계.",
+                result: "야간 환경 감지율 98% 달성, 시제품 제작 완료."
             },
             project2: {
-                title: "Safety Control System",
-                overview: "휠체어 안전을 위한 경사로 밀림 방지 시스템.",
-                hardware: ["Arduino", "MPU6050", "Encoder Motor"],
-                logic: "PID 제어 및 Laplace Transform 모델링.",
-                result: "경사로 정지 유지 및 정속 주행 검증 완료."
+                title: "Wheelchair Stability Control",
+                tags: ["Arduino", "PID Control", "IMU", "MATLAB"],
+                overview: "경사로에서 사용자 안전을 위해 실시간 기울기를 감지하고 모터 토크를 제어합니다.",
+                core: "Laplace Transform을 이용한 시스템 모델링 및 PID Gain 튜닝.",
+                result: "최대 15도 경사에서 밀림 현상 0% 구현."
             }
         };
+
         function openModal(id) {
             const data = projectData[id];
-            const modal = document.getElementById('projectModal');
             const body = document.getElementById('modalBody');
             body.innerHTML = `
-                <h2 style="color:var(--primary-blue); margin-top:0;">${data.title}</h2>
-                <div style="margin:20px 0;"><span style="color:var(--point-orange); font-weight:700; display:block; margin-bottom:5px;">Overview</span><p style="margin:0;">${data.overview}</p></div>
-                <div style="margin:20px 0;"><span style="color:var(--point-orange); font-weight:700; display:block; margin-bottom:5px;">Hardware</span><div style="margin-top:8px;">${data.hardware.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div></div>
-                <div style="margin:20px 0;"><span style="color:var(--point-orange); font-weight:700; display:block; margin-bottom:5px;">Core Logic</span><p style="margin:0;">${data.logic}</p></div>
+                <h2 style="color:var(--primary-blue); margin-bottom:10px;">${data.title}</h2>
+                <div style="margin-bottom:30px;">
+                    ${data.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                </div>
+                <div style="display:grid; gap:20px;">
+                    <div><strong>Project Overview</strong><p style="color:var(--text-sub); margin-top:5px;">${data.overview}</p></div>
+                    <div><strong>Technical Challenge</strong><p style="color:var(--text-sub); margin-top:5px;">${data.core}</p></div>
+                    <div><strong>Key Result</strong><p style="color:var(--text-sub); margin-top:5px; font-weight:700; color:var(--point-orange);">${data.result}</p></div>
+                </div>
             `;
-            modal.style.display = 'flex';
+            document.getElementById('projectModal').style.display = 'flex';
         }
+
         function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
         window.onclick = (e) => { if(e.target == document.getElementById('projectModal')) closeModal(); }
     </script>
