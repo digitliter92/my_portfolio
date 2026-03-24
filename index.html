@@ -13,26 +13,131 @@
             --sidebar-width: 260px;
         }
         body { font-family: 'Pretendard', sans-serif; margin: 0; display: flex; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.6; }
-        
-        /* Sidebar Navigation */
         nav { width: var(--sidebar-width); height: 100vh; background-color: var(--cobalt-blue); color: #ffffff; position: fixed; padding: 50px 30px; box-sizing: border-box; display: flex; flex-direction: column; }
         nav h1 { font-size: 1.5rem; margin-bottom: 50px; font-weight: 800; letter-spacing: 1px; }
         .nav-links { display: flex; flex-direction: column; gap: 25px; }
         nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-weight: 500; transition: 0.3s; }
         nav a:hover { color: #ffffff; padding-left: 5px; }
-        
         main { margin-left: var(--sidebar-width); padding: 80px 60px; width: 100%; max-width: 1000px; }
-        
-        /* Sections */
         .hero h2 { font-size: 3.5rem; color: var(--cobalt-blue); margin: 0; font-weight: 900; line-height: 1.1; }
         .hero p { font-size: 1.2rem; color: #555; margin-top: 10px; font-weight: 500; }
-        
         .section-title { font-size: 1.8rem; font-weight: 700; margin-top: 80px; margin-bottom: 30px; border-left: 5px solid var(--cobalt-blue); padding-left: 15px; }
-        
-        /* About Grid */
         .about-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .skill-card { background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--cobalt-blue); }
         .skill-card ul { list-style: none; padding: 0; font-size: 0.95rem; line-height: 2; }
-        
-        /* Project Grid */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { background: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .card h4 { color: var(--cobalt-blue); margin: 10px 0; font-size: 1.2rem; }
+        .btn-detail { background: var(--cobalt-blue); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .btn-detail:hover { background: #003580; }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+        .modal-content { background: white; width: 90%; max-width: 750px; max-height: 85vh; border-radius: 16px; padding: 40px; overflow-y: auto; position: relative; }
+        .close { position: absolute; right: 25px; top: 20px; font-size: 2rem; cursor: pointer; color: #aaa; }
+        .modal-header { border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
+        .detail-item { margin-bottom: 25px; }
+        .detail-label { font-weight: 700; color: var(--cobalt-blue); display: block; margin-bottom: 8px; font-size: 1.1rem; }
+        .tech-tag { background: #f0f4f8; color: #446688; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; margin-right: 6px; font-weight: 600; }
+        @media (max-width: 768px) { body { flex-direction: column; } nav { width: 100%; height: auto; position: relative; padding: 30px; } main { margin-left: 0; padding: 40px 20px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>ENGINEERING</h1>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <main>
+        <section class="hero">
+            <h2>Hello World!</h2>
+            <p>Embedded Systems & Control Engineering Specialist</p>
+        </section>
+        <section id="about">
+            <h3 class="section-title">About Me</h3>
+            <div class="about-container">
+                <div>
+                    <p><strong>제어공학 기반의 임베디드 시스템 엔지니어</strong>를 목표로 하고 있습니다. 시스템 모델링과 하드웨어 구현 사이의 간극을 줄이는 연구를 지향합니다.</p>
+                    <p><strong>Laplace Transform 기반 모델링</strong>과 <strong>PID 제어 알고리즘</strong>을 통해 시스템 안정성을 확보하는 것에 집중합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4 style="color: var(--cobalt-blue); margin-top:0;">Technical Skills</h4>
+                    <ul>
+                        <li>• Control: PID, Feedback Loop, Laplace Modeling</li>
+                        <li>• Circuit: KiCad, Power Path, Buck Converter</li>
+                        <li>• Firmware: C++, Arduino, ESP32, Sensor Fusion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="projects">
+            <h3 class="section-title">Projects</h3>
+            <div class="project-grid">
+                <div class="card">
+                    <img src="my_fortplio.webp" alt="Assistive Tech">
+                    <h4>Assistive Technology</h4>
+                    <p>Obstacle detection system using sensor fusion.</p>
+                    <button class="btn-detail" onclick="openModal('project1')">상세보기</button>
+                </div>
+                <div class="card">
+                    <div style="width:100%; height:200px; background:#e9ecef; border-radius:8px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; color:#adb5bd;">Coming Soon</div>
+                    <h4>Safety Control System</h4>
+                    <p>Automated braking system for wheelchairs.</p>
+                    <button class="btn-detail" onclick="openModal('project2')">상세보기</button>
+                </div>
+            </div>
+        </section>
+        <section id="contact" style="margin-bottom: 100px;">
+            <h3 class="section-title">Contact</h3>
+            <p>협업 문의는 언제든 환영합니다.</p>
+            <div style="margin-top: 25px;">
+                <a href="mailto:your-email@gmail.com" class="btn-detail">✉️ Email Me</a>
+                <a href="https://github.com/digitliter92" target="_blank" class="btn-detail" style="background:#24292e;">🐙 GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const projectData = {
+            project1: {
+                title: "Assistive Technology Project",
+                overview: "ToF와 초음파 센서를 결합한 장애물 감지 시스템입니다.",
+                hardware: ["ESP32", "ToF Sensor", "Ultrasonic"],
+                logic: "Median Filter를 활용한 노이즈 제거 알고리즘.",
+                result: "감지율 98% 달성."
+            },
+            project2: {
+                title: "Safety Control System",
+                overview: "휠체어 밀림 방지 및 자동 감속 시스템입니다.",
+                hardware: ["Arduino", "MPU6050", "Encoder Motor"],
+                logic: "PID 제어 및 Laplace Transform 모델링.",
+                result: "15도 경사로 밀림 방지 검증 완료."
+            }
+        };
+        function openModal(id) {
+            const data = projectData[id];
+            const modal = document.getElementById('projectModal');
+            const body = document.getElementById('modalBody');
+            body.innerHTML = `
+                <div class="modal-header"><h3>${data.title}</h3></div>
+                <div class="detail-item"><span class="detail-label">Overview</span><p>${data.overview}</p></div>
+                <div class="detail-item"><span class="detail-label">Hardware Stack</span><div>${data.hardware.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div></div>
+                <div class="detail-item"><span class="detail-label">Core Logic</span><p>${data.logic}</p></div>
+                <div class="detail-item"><span class="detail-label">Final Result</span><p>${data.result}</p></div>`;
+            modal.style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
+        window.onclick = (e) => { if(e.target == document.getElementById('projectModal')) closeModal(); }
+    </script>
+</body>
+</html>
